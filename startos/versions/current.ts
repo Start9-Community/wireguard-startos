@@ -1,18 +1,18 @@
 import { IMPOSSIBLE, VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '1.0.0:1',
+  version: '1.0.0:2',
   releaseNotes: {
     en_US:
-      'Initial release with device management, downloadable client profiles, per-device network access controls, and daily, weekly, monthly, and total traffic statistics.',
+      'Adds a setup task that prompts you to create the first WireGuard device after configuring the connection address.',
     es_ES:
-      'Versión inicial con gestión de dispositivos, perfiles de cliente descargables, controles de acceso a la red por dispositivo y estadísticas de tráfico diarias, semanales, mensuales y totales.',
+      'Añade una tarea de configuración que solicita crear el primer dispositivo WireGuard después de configurar la dirección de conexión.',
     de_DE:
-      'Erstveröffentlichung mit Geräteverwaltung, herunterladbaren Client-Profilen, Netzwerkzugriffskontrollen pro Gerät sowie täglichen, wöchentlichen, monatlichen und gesamten Datenverkehrsstatistiken.',
+      'Fügt eine Einrichtungsaufgabe hinzu, die nach dem Konfigurieren der Verbindungsadresse zum Erstellen des ersten WireGuard-Geräts auffordert.',
     pl_PL:
-      'Pierwsze wydanie z zarządzaniem urządzeniami, profilami klientów do pobrania, kontrolą dostępu do sieci dla każdego urządzenia oraz dziennymi, tygodniowymi, miesięcznymi i łącznymi statystykami ruchu.',
+      'Dodaje zadanie konfiguracji, które po ustawieniu adresu połączenia prosi o utworzenie pierwszego urządzenia WireGuard.',
     fr_FR:
-      'Version initiale avec gestion des appareils, profils client téléchargeables, contrôles d’accès réseau par appareil et statistiques de trafic quotidiennes, hebdomadaires, mensuelles et totales.',
+      'Ajoute une tâche de configuration invitant à créer le premier appareil WireGuard après avoir configuré l’adresse de connexion.',
   },
   migrations: {
     up: async () => {},

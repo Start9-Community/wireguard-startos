@@ -88,6 +88,7 @@ const dict = {
   'Change the IPv4 and IPv6 networks used by WireGuard devices.': 92,
   'Changing either network changes device addresses. View and re-import every device profile after saving.': 93,
   'Tunnel Settings': 94,
+  'Add a device to start using WireGuard.': 95,
 } as const
 
 export type I18nKey = keyof typeof dict

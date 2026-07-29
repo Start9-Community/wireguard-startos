@@ -25,11 +25,11 @@ which you can scan as a QR code or copy as text.
    port to the UDP port shown for the enabled **Public** address under
    **Interfaces → WireGuard Endpoint**. The external and StartOS ports may
    differ.
-4. Run **Add Device**, give the phone or computer a recognizable name, and scan
-   the returned profile with its WireGuard app. WAN and LAN access are enabled
-   by default; access to StartOS services and other WireGuard devices is
-   disabled by default. The same result can be scanned as a QR code or copied
-   as text.
+4. Complete the **Add Device** prompt, give the phone or computer a recognizable
+   name, and scan the returned profile with its WireGuard app. WAN and LAN
+   access are enabled by default; access to StartOS services and other
+   WireGuard devices is disabled by default. The same result can be scanned as
+   a QR code or copied as text.
 5. Turn off Wi-Fi for the first test, activate the tunnel, and open a website.
    This confirms the connection works from outside your home.
 
@@ -51,10 +51,9 @@ which you can scan as a QR code or copy as text.
   port changes. Then view and re-import each device profile so it uses the new
   address.
 - If your home LAN uses `10.44.0.x`, or otherwise overlaps the WireGuard
-  tunnel, run **Change CIDR** in the **Advanced** action category. Choose a
-  non-conflicting private IPv4 `/24` and IPv6 unique-local `/64`, then view and
-  re-import every device profile. Changing either CIDR changes device tunnel
-  addresses.
+  tunnel, run **Change CIDR** under **Tunnel Settings**. Choose a non-conflicting
+  private IPv4 `/24` and IPv6 unique-local `/64`, then view and re-import every
+  device profile. Changing either CIDR changes device tunnel addresses.
 
 Profiles contain private keys. Only display, scan, or copy them on devices you
 trust.

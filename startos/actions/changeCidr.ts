@@ -57,7 +57,7 @@ export const changeCidr = sdk.Action.withInput(
     ),
     allowedStatuses: 'any',
     group: i18n('Tunnel Settings'),
-    visibility: 'enabled',    
+    visibility: 'enabled',
   },
   inputSpec,
   async () => {

@@ -60,6 +60,10 @@ IPv6, and public-domain addresses. Custom addresses are intentionally not
 accepted. The public UDP port defaults to the port carried by the first enabled
 address, falling back to `51820`.
 
+After the connection address is configured, a critical task prompts the user
+to add the first device. The task is cleared as soon as a device exists and
+returns if the last device is removed.
+
 Server keys are generated during this setup. The WireGuard process listens on
 UDP 51820 inside its service container. StartOS may assign a different port to
 the enabled Public address, and the router's external port may differ again.
@@ -85,11 +89,11 @@ DNS access to the StartOS resolver remains available even when Local traffic
 is disabled. Policies are enforced by the server, so changing them does not
 require updating the device profile.
 
-The tunnel defaults to `10.44.0.0/24` and `fd44:5747:5354::/64`. The
-**Change CIDR** action in the **Advanced** category accepts a private IPv4
-`/24` and an IPv6 unique-local `/64`, excluding the StartOS service networks.
-Changing either CIDR preserves each device's host ID but changes its tunnel
-addresses, so every device profile must be viewed and re-imported afterward.
+The tunnel defaults to `10.44.0.0/24` and `fd44:5747:5354::/64`. The **Change
+CIDR** action in **Tunnel Settings** accepts a private IPv4 `/24` and an IPv6
+unique-local `/64`, excluding the StartOS service networks. Changing either
+CIDR preserves each device's host ID but changes its tunnel addresses, so every
+device profile must be viewed and re-imported afterward.
 
 StartOS currently provides packages with the server's LAN addresses but not
 their subnet prefixes or routing table. The package therefore cannot discover
@@ -115,7 +119,7 @@ All actions are available from the StartOS service page:
 - **View Device Profile** shows the same copyable profile and QR code again.
 - **Remove Device** removes the device from `wg0` and revokes its access.
 - **Change CIDR** changes the IPv4 and IPv6 tunnel networks and remaps existing
-  device addresses. It is grouped under **Advanced**.
+  device addresses. It is grouped under **Tunnel Settings**.
 
 User-facing language says “device” rather than exposing WireGuard peer
 terminology.
