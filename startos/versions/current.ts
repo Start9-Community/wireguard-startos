@@ -1,7 +1,7 @@
 import { IMPOSSIBLE, VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '1.0.0:0',
+  version: '1.0.0:1',
   releaseNotes: {
     en_US:
       'Initial release with device management, downloadable client profiles, per-device network access controls, and daily, weekly, monthly, and total traffic statistics.',

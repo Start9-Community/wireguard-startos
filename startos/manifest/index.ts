@@ -3,7 +3,7 @@ import { long, short } from './i18n'
 
 export const manifest = setupManifest({
   id: 'wireguard',
-  title: 'WireGuard',
+  title: 'WireGuard VPN',
   license: 'GPL-2.0-only',
   packageRepo: 'https://github.com/remcoros/wireguard-startos',
   upstreamRepo: 'https://git.zx2c4.com/wireguard-tools/',
