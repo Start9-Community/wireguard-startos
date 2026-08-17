@@ -51,15 +51,11 @@ which you can scan as a QR code or copy as text.
   port changes. Then view and re-import each device profile so it uses the new
   address.
 - If your home LAN uses `10.44.0.x`, or otherwise overlaps the WireGuard
-  tunnel, run **Change CIDR** under **Tunnel Settings**. Choose a non-conflicting
-  private IPv4 `/24` and IPv6 unique-local `/64`, then view and re-import every
-  device profile. Changing either CIDR changes device tunnel addresses.
+  tunnel, run **Change CIDR** under **Tunnel Settings**. WireGuard cannot detect
+  the overlap for you — the symptom is that a connected device can no longer
+  reach your own home network. Choose a non-conflicting private IPv4 `/24` and
+  IPv6 unique-local `/64`, then view and re-import every device profile.
+  Changing either CIDR changes device tunnel addresses.
 
-Profiles contain private keys. Only display, scan, or copy them on devices you
-trust.
-
-LAN access recognizes the standard private home-network ranges rather than
-assuming a particular subnet such as `192.168.1.x`. StartOS does not currently
-provide packages with exact LAN subnet information, so WireGuard cannot detect
-CIDR overlap automatically and a LAN using public address space is treated as
-WAN traffic.
+Profiles contain private keys, so they are hidden until you reveal them. Only
+display, scan, or copy a profile on a device you trust.

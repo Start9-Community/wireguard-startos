@@ -8,7 +8,7 @@ The service image is built from the root `Dockerfile`. Alpine supplies
 Build the image or run:
 
 ```sh
-docker run --rm alpine:3.22 apk info -a wireguard-tools wireguard-go
+docker run --rm alpine:3.24 apk info -a wireguard-tools wireguard-go
 ```
 
 Review WireGuard tools changes at
