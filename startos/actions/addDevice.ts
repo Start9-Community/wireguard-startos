@@ -25,10 +25,8 @@ const inputSpec = InputSpec.of({
     maxLength: 32,
     patterns: [
       {
-        regex: '^[A-Za-z0-9][A-Za-z0-9 _.-]{0,31}$',
-        description: i18n(
-          'Start with a letter or number and use only letters, numbers, spaces, dots, dashes, or underscores.',
-        ),
+        regex: '^\\S(?:.*\\S)?$',
+        description: i18n('Do not begin or end the name with a space.'),
       },
     ],
   }),

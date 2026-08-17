@@ -54,7 +54,7 @@ async function generateKeys(
       ])
       const values = result.stdout.toString().trim().split('\n')
       if (values.length < (includePresharedKey ? 3 : 2)) {
-        throw new Error('WireGuard did not return valid keys')
+        throw new Error(i18n('WireGuard could not generate device keys.'))
       }
       return {
         privateKey: values[0],
@@ -74,7 +74,7 @@ export async function generateDeviceKeys(
 ): Promise<KeyPair & { presharedKey: string }> {
   const keys = await generateKeys(effects, true)
   if (!keys.presharedKey)
-    throw new Error('WireGuard did not return a shared key')
+    throw new Error(i18n('WireGuard could not generate device keys.'))
   return { ...keys, presharedKey: keys.presharedKey }
 }
 
@@ -84,21 +84,25 @@ export function profileResult(
   config: WireGuardConfig,
   device: Device,
 ) {
-  const profile = renderDeviceConfig(config, device)
   return {
     version: '1' as const,
     title,
     message,
     result: {
-      type: 'single' as const,
-      name: i18n('WireGuard profile'),
-      description: i18n(
-        'Scan this code with the WireGuard app, or copy the profile text.',
-      ),
-      value: profile,
-      masked: false,
-      copyable: true,
-      qr: true,
+      type: 'group' as const,
+      value: [
+        {
+          type: 'single' as const,
+          name: i18n('WireGuard profile'),
+          description: i18n(
+            'Scan this code with the WireGuard app, or copy the profile text.',
+          ),
+          value: renderDeviceConfig(config, device),
+          masked: true,
+          copyable: true,
+          qr: true,
+        },
+      ],
     },
   }
 }

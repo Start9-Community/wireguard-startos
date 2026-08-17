@@ -33,7 +33,7 @@ export const watchSetup = sdk.setupOnInit(async (effects) => {
   }
 
   if (!current?.devices.length) {
-    await sdk.action.createOwnTask(effects, addDevice, 'critical', {
+    await sdk.action.createOwnTask(effects, addDevice, 'important', {
       reason: i18n('Add a device to start using WireGuard.'),
     })
   }

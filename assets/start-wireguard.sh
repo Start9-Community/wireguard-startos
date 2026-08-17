@@ -6,6 +6,25 @@ configuration=/data/wg0.conf
 statistics=/data/wg0.stats
 temporary_statistics=/data/.wg0.stats.tmp
 
+# Matches on the interface, not the CIDR: the tunnel CIDRs are user-configurable,
+# so a rule left by a previous Change CIDR would outlive a fixed-CIDR teardown.
+cleanup_masquerade() {
+  tool="$1"
+  rules=$("$tool" -t nat -S POSTROUTING 2>/dev/null || true)
+  # -f for the unquoted expansion below, which needs word splitting but not globbing.
+  set -f
+  while IFS= read -r rule; do
+    case "$rule" in
+    "-A POSTROUTING "*" -o eth0 -j MASQUERADE")
+      "$tool" -t nat -D ${rule#-A } >/dev/null 2>&1 || true
+      ;;
+    esac
+  done <<EOF
+$rules
+EOF
+  set +f
+}
+
 cleanup_firewall() {
   for tool in iptables ip6tables; do
     if [ "$tool" = iptables ]; then
@@ -34,14 +53,8 @@ cleanup_firewall() {
     "$tool" -X "$main_chain" >/dev/null 2>&1 || true
   done
 
-  while iptables -t nat -D POSTROUTING -s 10.44.0.0/24 \
-    -o eth0 -j MASQUERADE >/dev/null 2>&1; do
-    :
-  done
-  while ip6tables -t nat -D POSTROUTING -s fd44:5747:5354::/64 \
-    -o eth0 -j MASQUERADE >/dev/null 2>&1; do
-    :
-  done
+  cleanup_masquerade iptables
+  cleanup_masquerade ip6tables
 }
 
 wg-quick down "$configuration" >/dev/null 2>&1 || true

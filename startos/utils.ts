@@ -403,8 +403,10 @@ function firewallCommands(
 export function renderServerConfig(config: WireGuardConfig): string {
   const peers = config.devices
     .map(
+      // The action's name pattern is enforced by the UI only, so a CLI caller
+      // can put a newline here — and a config comment ends at the newline.
       (device) => `
-# ${device.name}
+# ${device.name.replace(/\s+/g, ' ')}
 [Peer]
 PublicKey = ${device.publicKey}
 PresharedKey = ${device.presharedKey}

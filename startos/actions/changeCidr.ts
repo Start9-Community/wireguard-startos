@@ -10,6 +10,16 @@ import { readStore } from './helpers'
 
 const { InputSpec, Value } = sdk
 
+// utils.ts must not import the i18n runtime — the unit tests load it directly —
+// so its validation errors are English and get replaced here.
+function normalized(normalize: () => string, invalid: string): string {
+  try {
+    return normalize()
+  } catch {
+    throw new Error(invalid)
+  }
+}
+
 const inputSpec = InputSpec.of({
   ipv4: Value.text({
     name: i18n('IPv4'),
@@ -68,8 +78,14 @@ export const changeCidr = sdk.Action.withInput(
     }
   },
   async ({ effects, input }) => {
-    const ipv4Cidr = normalizeTunnelIpv4Cidr(input.ipv4)
-    const ipv6Cidr = normalizeTunnelIpv6Cidr(input.ipv6)
+    const ipv4Cidr = normalized(
+      () => normalizeTunnelIpv4Cidr(input.ipv4),
+      i18n('Use a private IPv4 /24 network such as 10.44.0.0/24.'),
+    )
+    const ipv6Cidr = normalized(
+      () => normalizeTunnelIpv6Cidr(input.ipv6),
+      i18n('Use an IPv6 unique-local /64 network such as fd44:5747:5354::/64.'),
+    )
     const current = await readStore()
     await store.merge(effects, {
       ipv4Cidr,
