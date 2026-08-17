@@ -5,7 +5,7 @@ export const manifest = setupManifest({
   id: 'wireguard',
   title: 'WireGuard VPN',
   license: 'GPL-2.0-only',
-  packageRepo: 'https://github.com/remcoros/wireguard-startos',
+  packageRepo: 'https://github.com/Start9-Community/wireguard-startos',
   upstreamRepo: 'https://git.zx2c4.com/wireguard-tools/',
   marketingUrl: 'https://www.wireguard.com/',
   donationUrl: null,

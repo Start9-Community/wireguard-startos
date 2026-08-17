@@ -32,7 +32,7 @@ function relativeHandshake(peer: PeerStatistics, nowSeconds: number): string {
   )
   if (minutes === 0) return i18n('Less than a minute ago')
   if (minutes === 1) return i18n('1 minute ago')
-  return `${minutes} ${i18n('minutes ago')}`
+  return i18n('${minutes} minutes ago', { minutes })
 }
 
 async function readStatistics(): Promise<string | null> {

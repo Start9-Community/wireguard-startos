@@ -54,13 +54,18 @@ export const removeDevice = sdk.Action.withInput(
         'The device’s access has been revoked and its old profile will no longer connect.',
       ),
       result: {
-        type: 'single',
-        value: device.name,
-        name: i18n('Removed device'),
-        description: null,
-        masked: false,
-        copyable: false,
-        qr: false,
+        type: 'group',
+        value: [
+          {
+            type: 'single',
+            name: i18n('Removed device'),
+            description: null,
+            value: device.name,
+            masked: false,
+            copyable: false,
+            qr: false,
+          },
+        ],
       },
     }
   },

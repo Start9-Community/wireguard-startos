@@ -97,7 +97,7 @@ export const configure = sdk.Action.withInput(
       ({ hostname }) => hostname === input.address,
     )
     if (!selected) {
-      throw new Error('The selected public address is no longer enabled')
+      throw new Error(i18n('The selected public address is no longer enabled.'))
     }
 
     const current = await readStore()
