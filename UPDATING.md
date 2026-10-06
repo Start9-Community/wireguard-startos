@@ -20,6 +20,7 @@ moving the base image.
 1. Update the Alpine tag in `Dockerfile` when required.
 2. Build the image and record the installed `wg --version`.
 3. Bump `startos/versions/current.ts` and write user-facing release notes.
-4. Run `npm run prettier`, `npm test`, `npm run check`, and `make x86`.
+4. Run `make format`, then `rm -rf javascript && make x86` — the JavaScript
+   build type-checks, runs `npm test`, lints and checks formatting first.
 5. Verify setup, profile import, handshake, revocation, and backup/restore on a
    StartOS server.

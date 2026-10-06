@@ -11,7 +11,7 @@
 
 You manage WireGuard entirely from the service’s **Actions**. There is no
 separate account or web interface. Each phone or computer gets its own profile,
-which you can scan as a QR code or copy as text.
+which you can scan as a QR code, copy as text, or download as a `.conf` file.
 
 ## Getting set up
 
@@ -29,7 +29,7 @@ which you can scan as a QR code or copy as text.
    name, and scan the returned profile with its WireGuard app. WAN and LAN
    access are enabled by default; access to StartOS services and other
    WireGuard devices is disabled by default. The same result can be scanned as
-   a QR code or copied as text.
+   a QR code, copied as text, or downloaded as a `.conf` file to import.
 5. Turn off Wi-Fi for the first test, activate the tunnel, and open a website.
    This confirms the connection works from outside your home.
 
@@ -44,7 +44,8 @@ which you can scan as a QR code or copy as text.
 - Run **View Active Devices** to see devices active within the last 10 minutes
   and their download/upload traffic for the current day, week, month, and in
   total.
-- Run **View Device Profile** to show a device’s QR code or profile text again.
+- Run **View Device Profile** to show a device’s QR code, profile text, or
+  profile file again.
 - Run **Remove Device** when a device is lost, replaced, or should no longer
   connect. Its old profile stops working.
 - Run **Set Connection Address** again if your public IP, domain, or external
@@ -58,4 +59,4 @@ which you can scan as a QR code or copy as text.
   Changing either CIDR changes device tunnel addresses.
 
 Profiles contain private keys, so they are hidden until you reveal them. Only
-display, scan, or copy a profile on a device you trust.
+display, scan, copy, or download a profile on a device you trust.

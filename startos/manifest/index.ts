@@ -18,5 +18,4 @@ export const manifest = setupManifest({
     },
   },
   virtualNetworking: true,
-  dependencies: {},
 })

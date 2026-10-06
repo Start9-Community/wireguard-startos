@@ -18,15 +18,23 @@ Freshly scaffolded? Work the
 guide page, not a file in this repo — read it, don't copy it in.
 
 Keep `README.md` (technical reference for an AI support or administering agent) and
-`instructions.md` (end-user docs) in sync with your changes.
+`instructions.md` (end-user docs) in sync with your changes. This file restates neither:
+whoever changes the package has both, so it carries only what they don't — repo mechanics,
+a change that looks right and is not, where the next thing gets added, a naming trap, a
+build or test invocation particular to this repo.
 
-**Bugs and feature requests are GitHub issues on this repo** — file them as you find them.
+**Fix a defect you spot rather than reporting it** — you have the package open and the
+context to be sure. File **a GitHub issue on this repo** only when the call isn't yours to
+make: you can't pin the cause down, two defensible fixes exist, or it's too large to ride on
+the work in hand. An open issue is a report, not a queue — implement one when you're asked
+to or when it's labelled `Approved`, then close it with `Closes #<n>`.
+
 Don't record work in the repo instead: no `TODO.md`, no `NOTES.md`, no `PLAN.md`. What you
 verified, tried, and decided belongs in the commit message and the PR body.
 
 ## This repo
 
-- **`assets/` is Docker build context, not a mounted asset directory.** The `Dockerfile` `COPY`s the three runtime files into the image; nothing calls `mountAssets`. Editing one of them needs an image rebuild (`make x86`), not just a service restart.
-- **`virtualNetworking: true` in the manifest is what grants `/dev/net/tun`.** Without it `wg-quick` cannot create `wg0` at all, because the kernel WireGuard module is unavailable to a service container and the `wireguard-go` fallback needs the tun device. Don't drop the flag.
-- **`/data/wg0.conf` is generated, never hand-edited.** `main.ts` rewrites it from `store.json` on every run, and every write to `store.json` restarts main through the `.const()` watcher. Change the renderer in `startos/utils.ts`, not the file on disk.
-- **`startos/utils.ts` and `startos/statistics.ts` are pure and covered by `npm test`** (`node --test`, no StartOS runtime needed). CI does not run it — run it yourself after touching address arithmetic, config rendering, the firewall policy chains, or the statistics parser.
+- **`assets/` is Docker build context, not a mounted asset directory.** The `Dockerfile` `COPY`s its files into the image, so editing one needs an image rebuild (`make x86`), not a service restart.
+- **Keep `virtualNetworking: true` in the manifest** — without `/dev/net/tun` `wg-quick` cannot create `wg0`.
+- **Change `/data/wg0.conf` through its renderer in `startos/utils.ts`**, never on disk: `main.ts` rewrites the file from `store.json` on every start.
+- **`startos/utils.ts` and `startos/statistics.ts` must not import the SDK or the i18n runtime.** `tests/` loads them directly under `node --test`, which `make javascript/index.js` runs after the type-check.

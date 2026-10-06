@@ -10,11 +10,11 @@ const inputSpec = InputSpec.of({
     const devices = (await readStore()).devices
     return {
       name: i18n('Device'),
-      description: i18n('Choose the device whose access you want to revoke.'),
+      description: null,
       values: Object.fromEntries(
         devices.map((device) => [device.id, device.name]),
       ),
-      default: devices[0]?.id ?? '',
+      default: null,
     }
   }),
 })

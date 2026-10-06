@@ -10,11 +10,11 @@ const inputSpec = InputSpec.of({
     const devices = (await readStore()).devices
     return {
       name: i18n('Device'),
-      description: i18n('Choose the device whose profile you want to view.'),
+      description: null,
       values: Object.fromEntries(
         devices.map((device) => [device.id, device.name]),
       ),
-      default: devices[0]?.id ?? '',
+      default: devices[0]?.id ?? null,
     }
   }),
 })
@@ -25,9 +25,11 @@ export const viewDevice = sdk.Action.withInput(
     const devices = (await store.read().const(effects))?.devices ?? []
     return {
       name: i18n('View Device Profile'),
-      description: i18n('Show a device profile as a QR code and text.'),
+      description: i18n(
+        'Show a device profile as a QR code, as text, and as a file to download.',
+      ),
       warning: i18n(
-        'This profile contains a private key. Only show or copy it on a device you trust.',
+        'This profile contains a private key. Only show, copy, or download it on a device you trust.',
       ),
       allowedStatuses: 'any',
       group: i18n('Devices'),
@@ -47,7 +49,9 @@ export const viewDevice = sdk.Action.withInput(
     if (!device) throw new Error(i18n('This device no longer exists.'))
     return profileResult(
       i18n('Device Profile'),
-      i18n('Scan the code or copy the profile text into the WireGuard app.'),
+      i18n(
+        'Scan the code, or copy or download the profile and import it into the WireGuard app.',
+      ),
       config,
       device,
     )

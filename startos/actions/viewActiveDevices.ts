@@ -112,30 +112,32 @@ export const viewActiveDevices = sdk.Action.withoutInput(
       ),
       result: {
         type: 'group' as const,
-        value: active.map((peer): T.ActionResultMember => ({
-          type: 'group',
-          name: names.get(peer.publicKey) ?? i18n('Device'),
-          description: null,
-          value: [
-            single(i18n('Last active'), relativeHandshake(peer, nowSeconds)),
-            single(
-              i18n('Download/Upload (Daily)'),
-              formatTraffic(peer.sentBytesDaily, peer.receivedBytesDaily),
-            ),
-            single(
-              i18n('Download/Upload (Weekly)'),
-              formatTraffic(peer.sentBytesWeekly, peer.receivedBytesWeekly),
-            ),
-            single(
-              i18n('Download/Upload (Monthly)'),
-              formatTraffic(peer.sentBytesMonthly, peer.receivedBytesMonthly),
-            ),
-            single(
-              i18n('Download/Upload (Total)'),
-              formatTraffic(peer.sentBytesTotal, peer.receivedBytesTotal),
-            ),
-          ],
-        })),
+        value: active.map(
+          (peer): T.ActionResultMember => ({
+            type: 'group',
+            name: names.get(peer.publicKey) ?? i18n('Device'),
+            description: null,
+            value: [
+              single(i18n('Last active'), relativeHandshake(peer, nowSeconds)),
+              single(
+                i18n('Download/Upload (Daily)'),
+                formatTraffic(peer.sentBytesDaily, peer.receivedBytesDaily),
+              ),
+              single(
+                i18n('Download/Upload (Weekly)'),
+                formatTraffic(peer.sentBytesWeekly, peer.receivedBytesWeekly),
+              ),
+              single(
+                i18n('Download/Upload (Monthly)'),
+                formatTraffic(peer.sentBytesMonthly, peer.receivedBytesMonthly),
+              ),
+              single(
+                i18n('Download/Upload (Total)'),
+                formatTraffic(peer.sentBytesTotal, peer.receivedBytesTotal),
+              ),
+            ],
+          }),
+        ),
       },
     }
   },

@@ -56,11 +56,11 @@ const inputSpec = InputSpec.of({
     return {
       name: i18n('Device'),
       description: i18n(
-        'Choose the device whose network access you want to change.',
+        'The new access rules apply as soon as you save. The profile on the device does not need to be imported again.',
       ),
       warning: null,
       disabled: false,
-      default: devices[0]?.id ?? '',
+      default: devices[0]?.id ?? null,
       variants: Variants.of(variants),
     }
   }),
