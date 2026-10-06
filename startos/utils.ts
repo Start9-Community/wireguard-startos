@@ -449,7 +449,9 @@ export function profileFilename(deviceName: string): string {
     .replace(/[^a-zA-Z0-9_=+.-]+/g, '-')
     .slice(0, 15)
     .replace(/^-+|-+$/g, '')
-  return `${base || 'wireguard'}.conf`
+  const interfaceName =
+    base && base !== '.' && base !== '..' ? base : 'wireguard'
+  return `${interfaceName}.conf`
 }
 
 export function renderDeviceConfig(
