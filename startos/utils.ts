@@ -443,6 +443,17 @@ ${peers}
 `
 }
 
+// wg-quick names the interface after the file, so the name must match [a-zA-Z0-9_=+.-]{1,15}.
+export function profileFilename(deviceName: string): string {
+  const base = deviceName
+    .replace(/[^a-zA-Z0-9_=+.-]+/g, '-')
+    .slice(0, 15)
+    .replace(/^-+|-+$/g, '')
+  const interfaceName =
+    base && base !== '.' && base !== '..' ? base : 'wireguard'
+  return `${interfaceName}.conf`
+}
+
 export function renderDeviceConfig(
   config: WireGuardConfig,
   device: Device,

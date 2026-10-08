@@ -19,11 +19,11 @@ const dict = {
   'Complete first-time setup before managing devices.': 8,
   'WireGuard could not generate device keys.': 9,
   'WireGuard profile': 10,
-  'Scan this code with the WireGuard app, or copy the profile text.': 11,
+  'Scan this code with the WireGuard app, or copy or download the profile and import it there.': 11,
 
   // actions/configure.ts
   'Public address': 12,
-  'Choose an enabled Public address for your devices to use.': 13,
+  'Your devices connect to the server at this address. Only Public addresses enabled on WireGuard Endpoint are listed.': 13,
   'Enable a Public address under WireGuard Endpoint first.': 14,
   'Public port': 15,
   'The UDP port your devices use outside your home. This may differ from the internal WireGuard port if your router translates it.': 16,
@@ -57,19 +57,18 @@ const dict = {
 
   // actions/manageDeviceAccess.ts
   Device: 42,
-  'Choose the device whose network access you want to change.': 43,
+  'The new access rules apply as soon as you save. The profile on the device does not need to be imported again.': 43,
   'Manage Device Access': 44,
   'Change which networks a device can reach through WireGuard.': 45,
   'Add a device first.': 46,
   'This device no longer exists.': 47,
 
   // actions/viewDevice.ts
-  'Choose the device whose profile you want to view.': 48,
   'View Device Profile': 49,
-  'Show a device profile as a QR code and text.': 50,
-  'This profile contains a private key. Only show or copy it on a device you trust.': 51,
+  'Show a device profile as a QR code, as text, and as a file to download.': 50,
+  'This profile contains a private key. Only show, copy, or download it on a device you trust.': 51,
   'Device Profile': 52,
-  'Scan the code or copy the profile text into the WireGuard app.': 53,
+  'Scan the code, or copy or download the profile and import it into the WireGuard app.': 53,
 
   // actions/viewActiveDevices.ts
   'Less than a minute ago': 54,
@@ -90,7 +89,6 @@ const dict = {
   'Download/Upload (Total)': 69,
 
   // actions/removeDevice.ts
-  'Choose the device whose access you want to revoke.': 70,
   'Remove Device': 71,
   'Revoke a phone or computer’s WireGuard access.': 72,
   'The selected device will stop connecting immediately. This cannot be undone; add it again to create a new profile.': 73,

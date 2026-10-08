@@ -21,10 +21,10 @@ const inputSpec = InputSpec.of({
     return {
       name: i18n('Public address'),
       description: i18n(
-        'Choose an enabled Public address for your devices to use.',
+        'Your devices connect to the server at this address. Only Public addresses enabled on WireGuard Endpoint are listed.',
       ),
       values,
-      default: endpoints[0]?.hostname ?? '',
+      default: endpoints[0]?.hostname ?? null,
       disabled: endpoints.length
         ? false
         : i18n('Enable a Public address under WireGuard Endpoint first.'),

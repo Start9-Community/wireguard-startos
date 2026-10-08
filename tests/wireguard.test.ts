@@ -14,6 +14,7 @@ import {
   isValidPublicEndpointHost,
   normalizeTunnelIpv4Cidr,
   normalizeTunnelIpv6Cidr,
+  profileFilename,
   publicEndpointsFromAddresses,
   readdressDevices,
   renderDeviceConfig,
@@ -250,4 +251,16 @@ test('shows only peers active within ten minutes', () => {
     receivedBytesMonthly: 64,
     sentBytesMonthly: 131_072,
   })
+})
+
+test('names profile files as wg-quick interface names', () => {
+  assert.equal(profileFilename('Phone'), 'Phone.conf')
+  assert.equal(profileFilename('Matt’s iPhone 15'), 'Matt-s-iPhone-1.conf')
+  assert.equal(profileFilename('  laptop  '), 'laptop.conf')
+  assert.equal(profileFilename('电话'), 'wireguard.conf')
+  assert.equal(profileFilename('.'), 'wireguard.conf')
+  assert.equal(profileFilename('..'), 'wireguard.conf')
+  for (const name of ['Phone', 'Matt’s iPhone 15', 'a very long device name']) {
+    assert.match(profileFilename(name), /^[a-zA-Z0-9_=+.-]{1,15}\.conf$/)
+  }
 })

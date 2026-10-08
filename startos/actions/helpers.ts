@@ -3,7 +3,12 @@ import { T } from '@start9labs/start-sdk'
 import { emptyStore, store, Store } from '../fileModels/store.json'
 import { i18n } from '../i18n'
 import { sdk } from '../sdk'
-import { Device, renderDeviceConfig, WireGuardConfig } from '../utils'
+import {
+  Device,
+  profileFilename,
+  renderDeviceConfig,
+  WireGuardConfig,
+} from '../utils'
 
 type KeyPair = {
   privateKey: string
@@ -92,15 +97,16 @@ export function profileResult(
       type: 'group' as const,
       value: [
         {
-          type: 'single' as const,
+          type: 'multiline' as const,
           name: i18n('WireGuard profile'),
           description: i18n(
-            'Scan this code with the WireGuard app, or copy the profile text.',
+            'Scan this code with the WireGuard app, or copy or download the profile and import it there.',
           ),
           value: renderDeviceConfig(config, device),
           masked: true,
           copyable: true,
           qr: true,
+          filename: profileFilename(device.name),
         },
       ],
     },

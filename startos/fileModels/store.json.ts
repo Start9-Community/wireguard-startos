@@ -19,7 +19,7 @@ function isValidCidr(
   }
 }
 
-const device = z.object({
+const device = z.looseObject({
   id: z.string().catch(''),
   name: z.string().catch('Device'),
   privateKey: z.string().catch(''),
@@ -32,7 +32,7 @@ const device = z.object({
   allowLocal: z.boolean().catch(false),
 })
 
-const shape = z.object({
+const shape = z.looseObject({
   endpointHost: z.string().nullable().catch(null),
   endpointPort: z.number().int().min(1).max(65535).catch(51820),
   ipv4Cidr: z

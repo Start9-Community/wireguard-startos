@@ -193,8 +193,11 @@ should never be shared between two. Generates a keypair and preshared key inside
 a throwaway container, allocates the lowest free tunnel address, appends the
 device to `store.json`, and restarts the service so the peer reaches the running
 interface. Rejects a duplicate name and a full address pool. Returns the profile
-as masked, copyable text with a QR code — the only time the device's private key
-is generated, though **View Device Profile** can show it again.
+as masked, copyable text with a QR code and a download, named after the device
+and cut to what `wg-quick` accepts as an interface name (letters, digits and
+`_=+.-`, at most 15 characters, `wireguard.conf` if nothing is left) — the only
+time the device's private key is generated, though **View Device Profile** can
+show it again.
 
 **Manage Device Access** (`manage-device-access`) — run it to widen or narrow one
 device's reach. Rewrites that device's policy in `store.json` and restarts the
@@ -203,7 +206,7 @@ Idempotent.
 
 **View Device Profile** (`view-device`) — run it to re-import a profile on a new
 or reset device. Reads only; changes nothing and does not restart the service.
-Returns the same masked profile and QR code **Add Device** did.
+Returns the same masked profile, QR code and download **Add Device** did.
 
 **View Active Devices** (`view-active-devices`) — run it to see which devices
 have handshaked in the last ten minutes and how much they have moved. Reads
