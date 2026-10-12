@@ -23,6 +23,7 @@ function single(
     copyable: false,
     masked: false,
     qr: false,
+    launchable: false,
   }
 }
 

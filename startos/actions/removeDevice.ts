@@ -64,6 +64,7 @@ export const removeDevice = sdk.Action.withInput(
             masked: false,
             copyable: false,
             qr: false,
+            launchable: false,
           },
         ],
       },
